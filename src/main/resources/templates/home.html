@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<!--<html xmlns:th="http://www.w3.org/1999/xhtml">-->
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+  <meta charset="utf-8">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&family=Raleway:wght@400;600;700&display=swap" rel="stylesheet">
+  <title th:text="${title}"> </title>
+
+  <!--    <link rel="stylesheet" th:href="@{/css/style.css}" href="/css/style.css">-->
+  <!--    <link rel="stylesheet" type="/static/css/style.css" th:href="@{/resources/css/style.css}" />-->
+<!--  <link-->
+<!--          rel="stylesheet"-->
+<!--          href="/css/style.css"-->
+<!--          th:src="@{/css/style.css}" />-->
+<!--  <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />-->
+
+  <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+  <link rel="icon" type="image/png" th:href="@{/img/icon.png}"/>
+
+  <meta name="_csrf" content="${_csrf.token}"/>
+  <meta name="_csrf_header" content="${_csrf.headerName}"/>
+
+</head>
+<body>
+
+<!-- шапка HEADER-->
+<!--<div th:replace="blocks/header :: header"></div>-->
+
+<!--<div th:if="${user.isAdmin()}">-->
+<!--  <header class="admin-header">&ndash;&gt;-->
+<!--        <div th:replace="blocks/header-admin :: header"></div>-->
+<!--  </header>-->
+<!--</div>-->
+<!--<div th:unless="${user != null && user.isAdmin() || user == null}">-->
+<!--  <div th:replace="blocks/header :: header"></div>-->
+<!--</div>-->
+<div th:if="${user != null and user.isAdmin()}">
+  <div th:replace="blocks/header-admin :: header"></div>
+</div>
+<div th:if="${user != null and !user.isAdmin()}">
+  <div th:replace="blocks/header-user :: header"></div>
+</div>
+<div th:if="${user == null}">
+  <div th:replace="blocks/header :: header"></div>
+</div>
+
+
+
+<!--остальная часть без шапки INTRO-->
+<div class="intro">
+  <div class="container">
+    <div class="intro__inner">
+      <h1 class="intro__title">Сделаем ваше лучшее путешествие!</h1>
+      <h2 class="intro__subtitle">Мечтаете об идеальном отдыхе, отрыве от
+        суетливой повседневности? Готовы вместе с любимым человеком отправиться
+        за границу и насладиться яркими моментами, при этом минимизировав расходы?</h2>
+      <!-- Thinking of taking a break from every
+  day's busy life? Planning to go out of the country with your loved
+  ones to have some fun and quality time in a cost-effective way? -->
+      <a class="btn btn--red" href="/tour">Выбрать тур</a>
+    </div>
+  </div>
+</div>
+
+<div class="intro-tour">
+  <div class="container">
+
+    <div class="section__head">
+      <h2 class="section__title">Наши страны</h2>
+
+      <a href="/tour" class="view-all">Туры
+        <span aria-hidden="true">
+                    →
+                  </span>
+      </a>
+    </div>
+
+    <div class="posts">
+
+      <a class="post" href="#">
+        <div class="post__img">
+          <!--                    <img th:src="@{/resources/img/posts/Maldives.jpg}" alt="Maldives">-->
+          <img th:src="@{/img/posts/Maldives.jpg}" alt="Maldives">
+        </div>
+
+        <div class="post__body">
+          <h3 class="post__title">Мальдивы</h3>
+          <p class="post__subtitle">Maldives</p>
+        </div>
+
+      </a>
+      <a class="post" href="#">
+        <div class="post__img">
+          <img th:src="@{/img/posts/Santorini.jpg}" alt="Santorini">
+        </div>
+
+        <div class="post__body">
+          <h3 class="post__title">Греция</h3>
+          <p class="post__subtitle">Greece</p>
+        </div>
+      </a>
+
+      <a class="post" href="#">
+        <div class="post__img">
+          <!--                    <img src="img/posts/Paris with mouse.jpg" alt="Paris">-->
+          <img th:src="@{/img/posts/Paris with mouse.jpg}" alt="Paris">
+        </div>
+
+        <div class="post__body">
+          <h3 class="post__title">Франция</h3>
+          <p class="post__subtitle">France</p>
+        </div>
+      </a>
+
+      <a class="post" href="#">
+        <div class="post__img">
+          <img th:src="@{/img/posts/UAE.jpg}" alt="UAE">
+          <!--                    <img src="https://www.sibdom.ru/images/photo_crop_1050_700/articles/1/7ff8083f.jpg" alt="UAE">-->
+        </div>
+
+        <div class="post__body">
+          <h3 class="post__title">ОАЭ</h3>
+          <p class="post__subtitle">UAE</p>
+        </div>
+      </a>
+
+      <a class="post" href="#">
+        <div class="post__img">
+          <img th:src="@{img/posts/Sri-Lanka.jpg}" alt="Sri-Lanka">
+        </div>
+
+        <div class="post__body">
+          <h3 class="post__title">Шри-Ланка</h3>
+          <p class="post__subtitle">Sri-Lanka</p>
+        </div>
+      </a>
+
+      <a class="post" href="#">
+        <div class="post__img">
+          <!--                    <img src="img/posts/Austria.jpg" alt="Austria">-->
+          <!--                    <img th:src="@{img/posts/Austria.jpg}" alt="Austria">-->
+          <!--                    <img src="/resources/Austria.jpg" alt="Example Image">-->
+          <img th:src="@{img/posts/Austria.jpg}" alt="Austria">
+        </div>
+
+        <div class="post__body">
+          <h3 class="post__title">Австрия</h3>
+          <p class="post__subtitle">Austria</p>
+        </div>
+      </a>
+
+      <a class="post" href="#">
+        <div class="post__img">
+          <!--                    <img src="img/posts/Egypt.jpg" alt="Egypt">-->
+          <img th:src="@{img/posts/Egypt.jpg}" alt="Egypt">
+        </div>
+
+        <div class="post__body">
+          <h3 class="post__title">Египет</h3>
+          <p class="post__subtitle">Egypt</p>
+        </div>
+      </a>
+
+      <a class="post" href="#">
+        <div class="post__img">
+          <img th:src="@{img/posts/Denmark.jpg}" alt="Denmark">
+        </div>
+
+        <div class="post__body">
+          <h3 class="post__title">Дания</h3>
+          <p class="post__subtitle">Denmark</p>
+        </div>
+      </a>
+
+      <a class="post" href="#">
+        <div class="post__img">
+          <img th:src="@{img/posts/space X.jpg}" alt="Space">
+        </div>
+
+        <div class="post__body">
+          <h3 class="post__title">SpaceX</h3>
+          <p class="post__subtitle">SpaceX</p>
+        </div>
+      </a>
+
+    </div>
+
+  </div>
+
+  <!-- <div class="register">
+      <div id="login">
+          <form name="form-login">
+            <input type="text" class="input" id="user" placeholder="Username" />
+            <input type="password" class="input" id="pass" placeholder="Password" />
+            <button type="submit" class="submitbtn">Login</button>
+          </form>
+        </div>
+  </div> -->
+
+  <div>
+
+  </div>
+
+</div>
+</body>
+</html>

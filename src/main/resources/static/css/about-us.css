@@ -1,0 +1,340 @@
+body {
+    margin: 0; /*!это отступ у body есть*/
+    font-family: 'Raleway', sans-serif;
+    font-size: 14px;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: border-box; /*!не нужно подсчитывать размер блока*/
+}
+
+h1,h2,h3,h4,h5,h6 {
+    margin: 0; /*отступ*/
+}
+
+p {
+    margin: 0 0 10px 0;
+}
+
+/*Container===================*/
+.container {
+    width: 100%;
+    max-width: 1170px; /*если экран меньше 1170px, то будет занимать 100% экрана*/
+    margin: 0 auto; /*выравнивание по центру */
+}
+
+/* Header (шапка)======================*/
+.header {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+
+    height: 100px;
+    /* background-color:#669EF2; */
+}
+
+.header__inner {
+    display: flex;
+    justify-content: space-between; /*разделить наши элементы*/
+    align-items: center; /*выровнять элементы с картинкой по центру*/
+    padding: 30px 20px 0; /*внутренний отступ в самом начале наверху*/
+
+}
+
+
+/* Nav (наши кнопки навигации)======================*/
+.nav {
+    display: flex; /*соединить все элементы*/
+    font-size: 16px;
+    font-weight: bold 700;
+    align-items: center;
+}
+
+.nav__link {
+    margin-left: 40px;
+
+    color: #002248;
+    text-decoration: none; /*подчеркивание*/
+    /* opacity: .75; прозрачность наших значков
+
+    transition: opacity .1s linear; */
+}
+
+.nav__link:hover {
+    text-decoration: underline; /*при наводе на них*/
+    /* opacity: 1; */
+}
+
+.btn {
+    display: inline-block;
+    vertical-align: top;
+    background-color: #0c787d; /*#5F8FA2*/
+    padding: 14px 40px;
+    color: #fff;
+
+    letter-spacing: 2px;
+    cursor: pointer;
+    border-radius: 10px;
+    border: 2px dashed #669EF2;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    transition: .4s;
+}
+
+.btn--red {
+    background-color: #002248; /*5495f6*/
+    text-transform: uppercase; /*все буквы большие*/
+    text-decoration: none;
+}
+
+.card__btn {
+    /* margin-top: auto; */
+    border: none;
+    padding: 20px 60px;
+    color: #fff;
+    background-color: #104d8a;
+    /* 104d8a */
+    /* rgb(156, 40, 112) 0, 72; */
+    cursor: pointer;
+    text-align: center;
+    /* margin: auto;
+    align-items: flex-start; */
+    font-size: medium;
+    margin-top: 10px; /* Изменено значение для отступа сверху */
+    margin-bottom: 10px; /* Установлен отступ снизу */
+}
+
+.btn span:last-child {
+    display: none;
+}
+
+/*при нажатии кнопки*/
+.btn:hover {
+    transition: .4s;
+    border: 2px dashed #002248; /*края при нажатии кнопки цвета*/
+    background-color: #fff;
+    color: #002248; /*текст буквы*/
+}
+
+.btn--red:hover {
+    transition: .4s;
+    border: 2px dashed #002248; /*края при нажатии кнопки цвета*/
+    background-color: #fff;
+    color: #002248; /*текст буквы*/
+}
+
+.card__btn:hover {
+    transition: 1ms;
+    border: none;
+    background-color: #1162b3;
+    color: #fff; /*текст буквы*/
+}
+
+
+/* Intro (часть кроме шапки)======================*/
+
+.intro {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.container-main {
+    flex-direction: column;
+    justify-content: center;
+    background: linear-gradient(white, #0c777dce);
+    height: 470px;
+}
+
+.section__head {
+    font-family: 'Philosopher', sans-serif;
+    font-size: 30px;
+    align-items: center;
+    line-height: 1.1;
+    margin-top: 140px;
+    margin-bottom: 40px;
+}
+
+.section__title {
+    margin: 0; /* Убираем внешние отступы у заголовка */
+    text-align: center; /* Центрирование заголовка по центру .section__head */
+    flex-grow: 1; /* Занимаем все доступное пространство слева от .view-all */
+}
+
+.cards-holder {
+    display: flex;
+    justify-content: center;
+    margin-left: 20px;
+}
+
+.card {
+    background-color: #ffffffe3;
+    width: 33%;
+    box-shadow: 10px 10px 40px 20px #0000001A;
+    margin-right: 31px;
+    margin-top: 20px;
+}
+
+.card-image {
+    display: flex;
+    justify-content: center;
+    padding-top: 31px;
+}
+
+.card-title {
+    font-family: 'Philosopher', sans-serif;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.card-desc {
+    text-align: center;
+    justify-content: center;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    margin-bottom: 20px;
+    padding: 20px;
+}
+
+
+/*Наша история*/
+
+.history {
+    margin-top: 100px;
+    margin-left: 100px;
+    height: 470px;
+}
+
+.history-title {
+    font-family: 'Philosopher', sans-serif;
+    font-size: 64px;
+    width: 444px;
+    text-align: center;
+    margin-bottom: 21px;
+}
+
+.history-desc {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    width: 444px;
+    font-weight: 400px;
+    text-align: center;
+}
+
+.history-number {
+    display: flex;
+    width: 444px;
+    justify-content: center;
+    margin-top: 40px;
+    margin-left: 20px;
+}
+
+.number-item {
+    margin-right: 60px;
+    text-align: center; /*выравнивание*/
+    font-size: 25px;
+    color: #BC9060;
+}
+
+.number-item span {
+    display: block;
+    color: #000;
+}
+
+.history-holder {
+    display: flex;
+    justify-content: space-between;
+}
+
+.history-images {
+    height: 300px;
+    width: 230px;
+    position: relative;
+}
+
+.images-1 {
+    height: 300px;
+    width: 260px;
+    position: absolute;
+    z-index: 999;
+    top: 76px;
+    left: -328px;
+}
+
+.images-3 {
+    position: absolute;
+    z-index: 0;
+    top: -35px;
+    left: -160px;
+}
+
+.images-2 {
+    height: 300px;
+    width: 260px;
+    position: absolute;
+    z-index: 0;
+    top: 150px;
+    left: -35px;
+}
+
+.history-images img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+/* корзина */
+.cartBtn {
+    border: none;
+    border-radius: 0px;
+    padding: 14px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    color: white;
+    font-weight: 500;
+    position: relative;
+    background-color: #104d8a;
+    box-shadow: 0 20px 30px -7px rgba(27, 27, 27, 0.219);
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    overflow: hidden;
+    border-radius: 10px;
+    margin-left: 20px;
+}
+
+.cartBtn:hover {
+    transition: 1ms;
+    border: none;
+    background-color: #1162b3;
+    color: #fff; /*текст буквы*/
+    text-decoration: none;
+}
+
+.cart {
+    z-index: 2;
+}
+
+.cartBtn:active {
+    transform: scale(0.96);
+}
+
+.product {
+    position: absolute;
+    width: 12px;
+    border-radius: 3px;
+    content: "";
+    left: 23px;
+    bottom: 23px;
+    opacity: 0;
+    z-index: 1;
+    fill: rgb(211, 211, 211);
+}

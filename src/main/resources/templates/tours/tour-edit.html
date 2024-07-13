@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tour List</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&family=Raleway:wght@400;600;700&display=swap" rel="stylesheet">
+    <!--    <link href="<link rel="preconnect href="https://fonts.googleapis.com">-->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&family=Playfair+Display:wght@700&family=Raleway:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&family=Philosopher:wght@700&family=Playfair+Display:wght@700&family=Raleway:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+
+    <!--  <link rel="stylesheet" th:href="@{/css/tour-main-admin.css}" href="/css/tour-main-admin.css">-->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/tour-add.css}" />
+    <link rel="website icon" type="png" href="img/icon.png">
+
+    <meta name="_csrf" content="${_csrf.token}"/>
+    <meta name="_csrf_header" content="${_csrf.headerName}"/>
+
+</head>
+<body>
+
+
+<!-- шапка HEADER-->
+<div th:replace="blocks/header :: header"></div>
+
+<!--остальная часть без шапки INTRO-->
+<div class="intro">
+    <div class="container">
+
+        <div class="section__head">
+            <h2 class="section__title">Добавить новую путевку</h2>
+        </div>
+
+        <div class="cards__item">
+            <article class="card">
+                <!--метод th:object вставляет уже значения поля тура, которые у него есть-->
+                <form th:method="POST" th:action="@{/edit/{id}(id=${tour.getId()})}" th:object="${tour}" enctype="multipart/form-data">
+
+                    <div class="card__image">
+                        <input type="file" name="file" accept="image/*">
+                    </div>
+
+                    <div class="card__content">
+                        <!--                        <input type="hidden" data-th-name="${_csrf.parameterName}" data-th-value="${_csrf.token}">-->
+                        <div class="rating-area">
+                            <input type="radio" th:field="*{stars}" id="star-5" name="stars" value="5" />
+                            <!--                                <input type="hidden" data-th-name="${_csrf.parameterName}" data-th-value="${_csrf.token}">-->
+                            <label for="star-5" title="Оценка «5»"></label>
+                            <input type="radio" th:field="*{stars}" id="star-4" name="stars" value="4" />
+                            <!--                                <input type="hidden" data-th-name="${_csrf.parameterName}" data-th-value="${_csrf.token}">-->
+                            <label for="star-4" title="Оценка «4»"></label>
+                            <input type="radio" th:field="*{stars}" id="star-3" name="stars" value="3" />
+                            <!--                                <input type="hidden" data-th-name="${_csrf.parameterName}" data-th-value="${_csrf.token}">-->
+                            <label for="star-3" title="Оценка «3»"></label>
+                            <input type="radio" th:field="*{stars}" id="star-2" name="stars" value="2" />
+                            <!--                                <input type="hidden" data-th-name="${_csrf.parameterName}" data-th-value="${_csrf.token}">-->
+                            <label for="star-2" title="Оценка «2»"></label>
+                            <input type="radio" th:field="*{stars}" id="star-1" name="stars" value="1" />
+                            <!--                                <input type="hidden" data-th-name="${_csrf.parameterName}" data-th-value="${_csrf.token}">-->
+                            <label for="star-1" title="Оценка «1»"></label>
+                        </div>
+                        <div class="input-wrapper">
+
+                            <label for="hotel_name"></label>
+                            <input type="text" placeholder="Название отеля..." name="text" class="input" th:field="*{hotel_name}" id="hotel_name"/>
+                            <!--                            <input type="hidden" data-th-name="${_csrf.parameterName}" data-th-value="${_csrf.token}">-->
+                            <br/>
+
+                            <label for="country"></label>
+                            <input type="text" placeholder="Название страны..." name="text" class="input" th:field="*{country}" id="country"/>
+                            <!--                                <input type="hidden" data-th-name="${_csrf.parameterName}" data-th-value="${_csrf.token}">-->
+                            <br/>
+
+                            <label for="fly_date"></label>
+                            <input type="date" placeholder="Дата вылета..." name="text" class="input" th:field="*{fly_date}" id="fly_date"/>
+                            <!--                                <input type="hidden" data-th-name="${_csrf.parameterName}" data-th-value="${_csrf.token}">-->
+                            <br/>
+
+                            <label for="night">Количество ночей: </label>
+                            <input type="number" placeholder="Количество ночей..." name="text" class="input" th:field="*{night}" id="night"/>
+                            <!--                                <input type="hidden" data-th-name="${_csrf.parameterName}" data-th-value="${_csrf.token}">-->
+                            <br/>
+
+                            <label for="people">Количество людей: </label>
+                            <input type="number" placeholder="Количество людей..." name="text" class="input" th:field="*{people}" id="people"/>
+                            <!--                                <input type="hidden" data-th-name="${_csrf.parameterName}" data-th-value="${_csrf.token}">-->
+                            <br/>
+
+                            <!--                            <label for="price">Цена: </label>-->
+                            <label for="price" class="input-label">Цена: </label>
+                            <input type="number" placeholder="Цена путевки..." name="text" class="input" th:field="*{price}" id="price"/>
+                            <!--                                <input type="hidden" data-th-name="${_csrf.parameterName}" data-th-value="${_csrf.token}">-->
+                            <br/>
+
+
+                            <div class="button-admin">
+
+                                <button type="submit" class="btn card__btn-add">Изменить путевку</button>
+                                <!--                            <input type="hidden" data-th-name="${_csrf.parameterName}" data-th-value="${_csrf.token}">-->
+
+                                <a href="/tour-admin">
+                                    <div class="closeModal"></div>
+                                    <!--                                <input type="hidden" data-th-name="${_csrf.parameterName}" data-th-value="${_csrf.token}">-->
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!--                        </form>-->
+
+                </form>
+            </article>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+
+<!--&lt;!&ndash;<form th:action="@{/logout}" method="post">&ndash;&gt;-->
+<!--&lt;!&ndash;    <input type="hidden" data-th-name="${_csrf.parameterName}" data-th-value="${_csrf.token}">&ndash;&gt;-->
+<!--&lt;!&ndash;    <input type="submit" value="Sign Out"/>&ndash;&gt;-->
+<!--&lt;!&ndash;</form>&ndash;&gt;-->
+
+<!--&lt;!&ndash;метод th:object вставляет уже значения поля тура, которые у него есть&ndash;&gt;-->
+<!--&lt;!&ndash;<form th:method="PATCH" th:action="@{/edit/{id}(id=${tour.getId()})}" th:object="${tour}">&ndash;&gt;-->
+<!--    <form th:method="POST" th:action="@{/edit/{id}(id=${tour.getId()})}" th:object="${tour}">-->
+<!--    <label for="hotel_name">Введите название отеля: </label>-->
+<!--    <input type="text" th:field="*{hotel_name}" id="hotel_name"/>-->
+<!--&lt;!&ndash;        <input type="hidden" data-th-name="${_csrf.parameterName}" data-th-value="${_csrf.token}">&ndash;&gt;-->
+<!--    <br/>-->
+
+<!--    <label for="stars">Количество звезд: </label>-->
+<!--    <input type="number" th:field="*{stars}" id="stars"/>-->
+<!--&lt;!&ndash;        <input type="hidden" data-th-name="${_csrf.parameterName}" data-th-value="${_csrf.token}">&ndash;&gt;-->
+<!--    <br/>-->
+
+<!--    <label for="country">Страна: </label>-->
+<!--    <input type="text" th:field="*{country}" id="country"/>-->
+<!--&lt;!&ndash;        <input type="hidden" data-th-name="${_csrf.parameterName}" data-th-value="${_csrf.token}">&ndash;&gt;-->
+<!--    <br/>-->
+
+<!--    <label for="fly_date">Дата вылета: </label>-->
+<!--    <input type="date" th:field="*{fly_date}" id="fly_date"/>-->
+<!--&lt;!&ndash;        <input type="hidden" data-th-name="${_csrf.parameterName}" data-th-value="${_csrf.token}">&ndash;&gt;-->
+<!--    <br/>-->
+
+<!--    <label for="night">Количество ночей: </label>-->
+<!--    <input type="number" th:field="*{night}" id="night"/>-->
+<!--&lt;!&ndash;        <input type="hidden" data-th-name="${_csrf.parameterName}" data-th-value="${_csrf.token}">&ndash;&gt;-->
+<!--    <br/>-->
+
+<!--    <label for="people">Количество людей: </label>-->
+<!--    <input type="number" th:field="*{people}" id="people"/>-->
+<!--&lt;!&ndash;        <input type="hidden" data-th-name="${_csrf.parameterName}" data-th-value="${_csrf.token}">&ndash;&gt;-->
+<!--    <br/>-->
+
+<!--    <label for="price">Цена: </label>-->
+<!--    <input type="number" th:field="*{price}" id="price"/>-->
+<!--&lt;!&ndash;        <input type="hidden" data-th-name="${_csrf.parameterName}" data-th-value="${_csrf.token}">&ndash;&gt;-->
+<!--    <br/>-->
+
+<!--        <input type="hidden" name="_method" value="PATCH"/>-->
+<!--        <input type="submit" value="Update!"/>-->
+<!--</form>-->
+
+<!--</body>-->
+<!--</html>-->

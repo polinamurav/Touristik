@@ -1,0 +1,421 @@
+body {
+    margin: 0; /*!это отступ у body есть*/
+    font-family: 'Raleway', sans-serif;
+    font-size: 14px;
+    color: #697687;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: border-box; /*!не нужно подсчитывать размер блока*/
+}
+
+h1,h2,h3,h4,h5,h6 {
+    margin: 0; /*отступ*/
+}
+
+p {
+    margin: 0 0 10px 0;
+}
+
+/*Container===================*/
+.container {
+    width: 100%;
+    max-width: 1170px; /*если экран меньше 1170px, то будет занимать 100% экрана*/
+    margin: 0 auto; /*выравнивание по центру */
+
+}
+
+/* Header (шапка)======================*/
+.header {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+
+    height: 100px;
+    /* background-color:#669EF2; */
+}
+
+.header__inner {
+    display: flex;
+    justify-content: space-between; /*разделить наши элементы*/
+    align-items: center; /*выровнять элементы с картинкой по центру*/
+    padding: 30px 20px 0; /*внутренний отступ в самом начале наверху*/
+
+}
+
+
+/* Nav (наши кнопки навигации)======================*/
+.nav {
+    display: flex; /*соединить все элементы*/
+    font-size: 16px;
+    font-weight: bold 700;
+    align-items: center;
+}
+
+.nav__link {
+    margin-left: 40px;
+
+    color: #002248;
+    text-decoration: none; /*подчеркивание*/
+    /* opacity: .75; прозрачность наших значков
+
+    transition: opacity .1s linear; */
+}
+
+.nav__link:hover {
+    text-decoration: underline; /*при наводе на них*/
+    /* opacity: 1; */
+}
+
+.btn {
+    display: inline-block;
+    vertical-align: top;
+    background-color: #0c787d; /*#5F8FA2*/
+    padding: 14px 20px;
+
+    color: #fff;
+
+    letter-spacing: 2px;
+    cursor: pointer;
+    border-radius: 10px;
+    border: 2px dashed #669EF2;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    transition: .4s;
+    text-decoration: none;
+}
+
+/*при нажатии кнопки*/
+.btn:hover {
+    transition: .4s;
+    border: 2px dashed #002248; /*края при нажатии кнопки цвета*/
+    background-color: #fff;
+    color: #002248; /*текст буквы*/
+}
+
+.card__btn-add {
+    border: none;
+    /* padding: 15px 60px; */
+    margin-right: 80px;
+    color: #fff;
+    background-color: #104d8a;
+    /* 104d8a */
+    /* rgb(156, 40, 112) 0, 72; */
+    cursor: pointer;
+    text-align: center;
+    /* margin: auto;
+    align-items: flex-start; */
+    font-size: medium;
+    margin-top: 10px; /* Изменено значение для отступа сверху */
+    margin-bottom: 10px; /* Установлен отступ снизу */
+    text-decoration: none;
+}
+
+.btn span:last-child {
+    display: none;
+}
+
+/*при нажатии кнопки*/
+.card__btn-add:hover {
+    transition: 1ms;
+    border: none;
+    background-color: #1162b3;
+    color: #fff; /*текст буквы*/
+    text-decoration: none;
+}
+
+button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1em;
+    border: 0px solid transparent;
+    background-color: rgba(100,77,237,0.08);
+    border-radius: 1.25em;
+    transition: all 0.2s linear;
+}
+
+button:hover {
+    box-shadow: 3.4px 2.5px 4.9px rgba(0, 0, 0, 0.025),
+    8.6px 6.3px 12.4px rgba(0, 0, 0, 0.035),
+    17.5px 12.8px 25.3px rgba(0, 0, 0, 0.045),
+    36.1px 26.3px 52.2px rgba(0, 0, 0, 0.055),
+    99px 72px 143px rgba(0, 0, 0, 0.08);
+}
+
+.card__btn-delete {
+    position: relative;
+    display: inline-block;
+}
+
+
+.card__btn-delete .tooltiptext {
+    visibility: hidden;
+    width: 4em;
+    background-color: rgba(0, 0, 0, 0.253);
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    top: 25%;
+    left: 110%;
+}
+
+.card__btn-delete .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 100%;
+    margin-top: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent rgba(0, 0, 0, 0.253) transparent transparent;
+}
+
+.card__btn-delete:hover .tooltiptext {
+    visibility: visible;
+}
+
+
+/* Intro (часть кроме шапки)======================*/
+.intro {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: rgba(35, 78, 122, 0.219);
+    /* офигенный цвет как надо! - rgb(220, 228, 244) */
+    color: #002248;
+    margin: 0;
+    padding: 50px;
+}
+
+.section__head {
+    font-family: 'Philosopher', sans-serif;
+    font-size: 30px;
+    align-items: center;
+    line-height: 1.1;
+    margin-top: 60px;
+    margin-bottom: 30px;
+}
+
+.section__title {
+    margin: 0; /* Убираем внешние отступы у заголовка */
+    text-align: center; /* Центрирование заголовка по центру .section__head */
+    flex-grow: 1; /* Занимаем все доступное пространство слева от .view-all */
+}
+
+.cards {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.cards__item {
+    margin-bottom: 30px;
+}
+
+/*отступы*/
+.cards__item:not(:last-child) {
+    margin-right: 20px;
+    /* margin-bottom: 30px; */
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    width: 350px;
+    background-color: #fff;
+    /* #e5e2e2 */
+
+    /* 20 - длина карточки */
+    margin: 20px 0;
+    border-radius: 10px;
+
+}
+
+.card__image {
+    height: 250px;
+}
+
+.card__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+    border-radius: 10px;
+}
+
+.person__content {
+    display: flex;
+    align-items:center;
+    margin-top: auto;
+    margin-bottom: 30px;
+    align-self:safe; /* Новое свойство для выравнивания внутри контейнера */
+}
+
+.person__image {
+    display: flex;
+    flex-direction: column;
+    height: 30px;
+    width: 30px;
+}
+
+.person__image img {
+    width: 100%;
+    height: 100%;
+}
+
+.person {
+    display: inline-block;
+    position: relative;
+    font-family: 'Philosopher', sans-serif;
+    font-size: 17px;
+    margin-left: 5px;
+}
+
+.card__content {
+    align-items: center; /*Выравнивание контента по центру*/
+    display: flex;
+    flex-direction: column;
+    /* align-items: flex-start; */
+    padding: 20px;
+    flex-grow: 1;
+}
+
+.card__title {
+    /* margin: 0; */
+    align-items: center;
+    text-align: center;
+    margin-bottom: 15px;
+    font-family: 'Philosopher', sans-serif;
+    font-size: 25px;
+}
+
+.card__descr {
+    margin: 0;
+    margin-bottom: 30px;
+    margin-top: -10px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+}
+
+.card__price {
+    margin-top: auto;
+    font-family: 'Philosopher', sans-serif;
+    font-size: 25px;
+    /* margin-top: 20px;
+    margin-bottom: -20px; */
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.card_fly_content {
+
+    display: flex;
+    align-items:center;
+}
+.card__fly {
+    /* display: inline-block; */
+    /* position: relative; */
+    /* flex-direction: column; */
+    font-family: 'Philosopher', sans-serif;
+    font-size: 15px;
+
+    margin-top: 30px;
+    /* margin-top: auto; */
+    margin-bottom: -30px;
+    /* margin-bottom: 0; */
+}
+
+/* если в карточке текста будет больше, чтоб все были одинаковые */
+.cards__item .card {
+    height: 100%;
+}
+
+.rating-result {
+    width: 310px;
+    margin: 0;
+    text-align: center;
+    /* margin-bottom - отступ снизу */
+    margin-bottom: 15px;
+}
+.rating-result span {
+    padding: 0;
+    font-size: 32px;
+    margin: 0 3px;
+    line-height: 1;
+    /* color: lightgrey;
+    text-shadow: 1px 1px #bbb; */
+}
+.rating-result > span:before {
+    content: '★';
+}
+.rating-result > span.active {
+    color: gold;
+    text-shadow: 1px 1px #c60;
+}
+
+
+
+/*ДЛЯ КНОПОК АДМИНА*/
+.button-admin {
+    display: flex;
+    justify-content: space-between; /* Adjusted to space between buttons */
+    align-items: center;
+}
+
+.plus-card {
+    padding: 179px 108px;
+    margin-top: 55px;
+    margin-bottom: -5px;
+    border-width: 5px;
+}
+
+.plus {
+    position: relative;
+    display: inline-block;
+    background-color: #1162b337;
+
+}
+
+.text {
+    opacity: 0;
+}
+
+.plus:hover .text {
+    visibility: hidden;
+    width: 5em;
+    background-color: rgba(0, 0, 0, 0.253);
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 6px 0;
+    position: absolute;
+    z-index: 1;
+    top: 25%;
+    left: 110%;
+}
+
+.plus:hover .text::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 100%;
+    margin-top: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent rgba(0, 0, 0, 0.253) transparent transparent;
+}
+
+.plus:hover:hover .text {
+    visibility: visible;
+    opacity: 1; /* Added to reveal the text on hover */
+}

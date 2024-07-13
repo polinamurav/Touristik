@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&family=Raleway:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&family=Playfair+Display:wght@700&family=Raleway:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&family=Philosopher:wght@700&family=Playfair+Display:wght@700&family=Raleway:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+
+<!--    <link rel="stylesheet" type="text/css" th:href="@{/css/busket-user.css}" />-->
+    <title>Touristik</title>
+
+    <link rel="website icon" type="png"
+          href="img/icon.png">
+
+
+    <meta name="_csrf" content="${_csrf.token}"/>
+    <meta name="_csrf_header" content="${_csrf.headerName}"/>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Raleway', sans-serif;
+            font-size: 14px;
+            color: #697687;
+        }
+
+        *, *:before, *:after {
+            box-sizing: border-box;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            margin: 0;
+        }
+
+        p {
+            margin: 0 0 10px 0;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1170px;
+            margin: 0 auto;
+        }
+
+        .header {
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            height: 100px;
+            background-color: rgba(35, 78, 122, 0.219);
+        }
+
+        .header__inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 20px 0;
+        }
+
+        .nav {
+            display: flex;
+            font-size: 16px;
+            font-weight: bold 700;
+            align-items: center;
+        }
+
+        .nav__link {
+            margin-left: 40px;
+            color: #002248;
+            text-decoration: none;
+        }
+
+        .nav__link:hover {
+            text-decoration: underline;
+        }
+
+        .btn {
+            display: inline-block;
+            vertical-align: top;
+            background-color: #0c787d;
+            padding: 14px 20px;
+            color: #fff;
+            letter-spacing: 2px;
+            cursor: pointer;
+            border-radius: 10px;
+            border: 2px dashed #669EF2;
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+            transition: .4s;
+        }
+
+        .btn:hover {
+            transition: .4s;
+            border: 2px dashed #002248;
+            background-color: #fff;
+            color: #002248;
+        }
+
+        .intro {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            color: #002248;
+            margin: 0;
+            padding: 50px;
+        }
+
+        .section__head {
+            font-family: 'Philosopher', sans-serif;
+            font-size: 20px;
+            align-items: center;
+            line-height: 1.1;
+            margin-top: -20px;
+            margin-bottom: 50px;
+        }
+
+        .section__title {
+            margin: 0;
+            text-align: center;
+            flex-grow: 1;
+        }
+
+        .cart {
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 30px;
+        }
+
+        .cart-header {
+            display: flex;
+            padding: 15px;
+            border-bottom: 1px solid #e0e0e0;
+            font-weight: bold;
+        }
+
+        .cart-header__title,
+        .cart-header__country,
+        .cart-header__count,
+        .cart-header__cost {
+            flex: 1;
+            text-align: center;
+        }
+
+        .product {
+            display: flex;
+            padding: 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .product__title,
+        .product__country,
+        .product__count,
+        .product__price {
+            flex: 1;
+            text-align: center;
+        }
+
+        .product__controls {
+            flex: 0.5;
+            text-align: center;
+        }
+
+        .cart-footer {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 15px;
+            border-top: 1px solid #e0e0e0;
+            font-weight: bold;
+        }
+
+        .cart-footer__price {
+            color: #333;
+            font-size: 24px;
+        }
+
+        /* корзина */
+        .cartBtn {
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
+            color: white;
+            font-weight: 500;
+            position: relative;
+            background-color: #104d8a;
+            box-shadow: 0 20px 30px -7px rgba(27, 27, 27, 0.219);
+            transition: all 0.3s ease-in-out;
+            cursor: pointer;
+            overflow: hidden;
+            border-radius: 10px;
+            margin-left: 20px;
+        }
+
+        .cartBtn:hover {
+            transition: 1ms;
+            border: none;
+            background-color: #1162b3;
+            color: #fff; /*текст буквы*/
+            text-decoration: none;
+        }
+
+        .cart {
+            z-index: 2;
+        }
+
+        .cartBtn:active {
+            transform: scale(0.96);
+        }
+
+
+    </style>
+
+</head>
+<body>
+
+
+<!-- шапка HEADER-->
+<div th:fragment="header" xmlns:th="http://www.w3.org/1999/xhtml">
+    <header class="header">
+        <div class="container">
+            <div class="header__inner">
+                <a href="/">
+                    <div class="header__logo">
+                       <img th:src="@{/img/Touristik.png}" alt="" style="width:130px;">
+                    </div>
+                </a>
+
+                <!-- навигация-->
+                <nav class="nav">
+                    <a class="nav__link" href="/">Главная</a>
+                    <a class="nav__link" href="/tour">Туры</a>
+                    <a class="nav__link" href="/about">Про нас</a>
+                    <a class="nav__link" href="/contact">Контакты</a>
+
+                </nav>
+                <a class="btn" href="/login">Выйти</a>
+                <h3>Имя пользователя: <i th:text="${user.name}"></i></h3>
+            </div>
+        </div>
+    </header>
+</div>
+
+<!--остальная часть без шапки INTRO-->
+<div class="intro">
+    <div class="section-cart__body"></div>
+    <div class="container">
+
+        <div class="section__head">
+            <h1 class="section__title">Выбранные туры</h1>
+        </div>
+
+        <section class="cart">
+            <header class="cart-header">
+                <div class="cart-header__title">название отеля</div>
+                <div class="cart-header__country">страна</div>
+                <div class="cart-header__count">количество человек</div>
+                <div class="cart-header__cost">стоимость</div>
+<!--                <div class="cart-header__del">удалить</div>-->
+            </header>
+
+
+<!--            <section class="product">-->
+<!--                <div class="product__img"><img src="img/tours/Maldives_hotel1.jpg" alt=""></div>-->
+<!--                <div class="product__title">SUN SIYAM OLHUVELI</div>-->
+<!--                <div class="product__country">Мальдивы</div>-->
+<!--                <div class="product__count">-->
+<!--                    <div class="count"> 2-->
+<!--                        <button type="button-person">-->
+<!--                            <img src="img/person icon.png" alt="Person">-->
+<!--                        </button>-->
+<!--                    </div>-->
+
+<!--                </div>-->
+<!--                <div class="product__price">4,121 $</div>-->
+<!--                <div class="product__controls">-->
+<!--                    <button type="button">-->
+<!--                        <img src="cross.svg" alt="Delete">-->
+<!--                    </button>-->
+<!--                </div>-->
+<!--            </section>-->
+
+
+            <section class="product" th:each="tour : ${user.tours}">
+                <div class="product__title" th:text="${tour.hotel_name}"></div>
+                <div class="product__country" th:text="${tour.country}"></div>
+                <div class="product__count">
+                    <div class="count" th:text="${tour.people}">
+                        <button type="button-person">
+                            <img th:src="@{/img/person icon.png}" alt="Люди">
+                        </button>
+                    </div>
+                </div>
+                <div class="product__price" th:text="${tour.price} + '$'"></div>
+<!--                <div class="product__controls">-->
+<!--                        <form th:method="post" th:action="@{/delete-tour-user}" style="display: inline;">-->
+<!--                        <input type="hidden" name="_method" value="delete">-->
+<!--                        <input type="hidden" name="tourId" th:value="${tour.id}">-->
+<!--                        <button type="submit" class="button card__btn-delete">-->
+<!--                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20" height="25" width="25">-->
+<!--                                <path fill="#6361D9" d="M8.78842 5.03866C8.86656 4.96052 8.97254 4.91663 9.08305 4.91663H11.4164C11.5269 4.91663 11.6329 4.96052 11.711 5.03866C11.7892 5.11681 11.833 5.22279 11.833 5.33329V5.74939H8.66638V5.33329C8.66638 5.22279 8.71028 5.11681 8.78842 5.03866ZM7.16638 5.74939V5.33329C7.16638 4.82496 7.36832 4.33745 7.72776 3.978C8.08721 3.61856 8.57472 3.41663 9.08305 3.41663H11.4164C11.9247 3.41663 12.4122 3.61856 12.7717 3.978C13.1311 4.33745 13.333 4.82496 13.333 5.33329V5.74939H15.5C15.9142 5.74939 16.25 6.08518 16.25 6.49939C16.25 6.9136 15.9142 7.24939 15.5 7.24939H15.0105L14.2492 14.7095C14.2382 15.2023 14.0377 15.6726 13.6883 16.0219C13.3289 16.3814 12.8414 16.5833 12.333 16.5833H8.16638C7.65805 16.5833 7.17054 16.3814 6.81109 16.0219C6.46176 15.6726 6.2612 15.2023 6.25019 14.7095L5.48896 7.24939H5C4.58579 7.24939 4.25 6.9136 4.25 6.49939C4.25 6.08518 4.58579 5.74939 5 5.74939H6.16667H7.16638ZM7.91638 7.24996H12.583H13.5026L12.7536 14.5905C12.751 14.6158 12.7497 14.6412 12.7497 14.6666C12.7497 14.7771 12.7058 14.8831 12.6277 14.9613C12.5495 15.0394 12.4436 15.0833 12.333 15.0833H8.16638C8.05588 15.0833 7.94989 15.0394 7.87175 14.9613C7.79361 14.8831 7.74972 14.7771 7.74972 14.6666C7.74972 14.6412 7.74842 14.6158 7.74584 14.5905L6.99681 7.24996H7.91638Z" clip-rule="evenodd" fill-rule="evenodd"></path>-->
+<!--                            </svg>-->
+<!--                            <span class="tooltiptext">удалить</span>-->
+<!--                        </button>-->
+<!--                    </form>-->
+<!--                </div>-->
+            </section>
+
+
+
+<!--            <footer class="cart-footer">-->
+<!--                <div class="cart-footer__price">19,621 $</div>-->
+<!--            </footer>-->
+
+<!--            <footer class="cart-footer">-->
+<!--                &lt;!&ndash; Используем th:with для определения переменной total и ее инициализации нулем &ndash;&gt;-->
+<!--                <div th:with="total=0" class="cart-footer__price">-->
+<!--                    &lt;!&ndash; Используем th:each для итерации по турам пользователя и суммирования стоимости &ndash;&gt;-->
+<!--                    <div th:each="tour : ${user.tours}" th:with="total=${total + tour.price}">-->
+<!--                        &lt;!&ndash; Это место покажет общую стоимость после прохода по всем турам &ndash;&gt;-->
+<!--                        <span th:text="${total} + ' $'"></span>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </footer>-->
+
+
+
+
+
+
+        </section>
+    </div>
+</div>
+</div>
+
+
+
+</body>
+</html>

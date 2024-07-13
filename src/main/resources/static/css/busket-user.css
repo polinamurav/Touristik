@@ -1,0 +1,574 @@
+body {
+    margin: 0; /*!это отступ у body есть*/
+    font-family: 'Raleway', sans-serif;
+    font-size: 14px;
+    color: #697687;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: border-box; /*!не нужно подсчитывать размер блока*/
+}
+
+h1,h2,h3,h4,h5,h6 {
+    margin: 0; /*отступ*/
+}
+
+p {
+    margin: 0 0 10px 0;
+}
+
+/*Container===================*/
+.container {
+    width: 100%;
+    max-width: 1170px; /*если экран меньше 1170px, то будет занимать 100% экрана*/
+    margin: 0 auto; /*выравнивание по центру */
+}
+
+/* Header (шапка)======================*/
+.header {
+    width: 100%;
+    /* position: absolute; */
+    top: 0;
+    left: 0;
+    z-index: 1000;
+
+    height: 100px;
+    background-color: rgba(35, 78, 122, 0.219);
+    /* background-color:#669EF2; */
+}
+
+.header__inner {
+    display: flex;
+    justify-content: space-between; /*разделить наши элементы*/
+    align-items: center; /*выровнять элементы с картинкой по центру*/
+    padding: 30px 20px 0; /*внутренний отступ в самом начале наверху*/
+
+}
+
+
+/* Nav (наши кнопки навигации)======================*/
+.nav {
+    display: flex; /*соединить все элементы*/
+    font-size: 16px;
+    font-weight: bold 700;
+    align-items: center;
+}
+
+.nav__link {
+    margin-left: 40px;
+
+    color: #002248;
+    text-decoration: none; /*подчеркивание*/
+    /*!* opacity: .75; прозрачность наших значков*/
+}
+
+.nav__link:hover {
+    text-decoration: underline; /*при наводе на них*/
+}
+
+.btn {
+    display: inline-block;
+    vertical-align: top;
+    background-color: #0c787d; /*#5F8FA2*/
+    padding: 14px 20px;
+
+    color: #fff;
+
+    letter-spacing: 2px;
+    cursor: pointer;
+    border-radius: 10px;
+    border: 2px dashed #669EF2;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    transition: .4s;
+}
+
+/*при нажатии кнопки*/
+.btn:hover {
+    transition: .4s;
+    border: 2px dashed #002248; /*края при нажатии кнопки цвета*/
+    background-color: #fff;
+    color: #002248; /*текст буквы*/
+}
+
+
+/* Intro (часть кроме шапки)======================*/
+.intro {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* background-color: rgba(35, 78, 122, 0.219); */
+    /* офигенный цвет как надо! - rgb(220, 228, 244) */
+    color: #002248;
+    margin: 0;
+    padding: 50px;
+}
+
+/* Заголовок ======================*/
+.section__head {
+    font-family: 'Philosopher', sans-serif;
+    font-size: 40px;
+    align-items: center;
+    line-height: 1.1;
+    margin-top: -20px;
+    margin-bottom: 50px;
+}
+
+.section__title {
+    margin: 0; /* Убираем внешние отступы у заголовка */
+    text-align: center; /* Центрирование заголовка по центру .section__head */
+    flex-grow: 1; /* Занимаем все доступное пространство слева от .view-all */
+}
+
+.section__admin {
+    margin-top: 40px; /* Убираем внешние отступы у заголовка */
+    text-align: center; /* Центрирование заголовка по центру .section__head */
+    flex-grow: 1; /* Занимаем все доступное пространство слева от .view-all */
+    color: #002248;
+}
+
+
+
+
+/* Reset and base styles  */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap");
+* {
+    padding: 0px;
+    margin: 0px;
+    border: none;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* Links */
+a, a:link, a:visited {
+    /* color: inherit; */
+    text-decoration: none;
+    /* display: inline-block; */
+}
+
+a:hover {
+    /* color: inherit; */
+    text-decoration: none;
+}
+
+/* Common */
+aside, nav, footer, header, section, main {
+    display: block;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+    font-size: inherit;
+    font-weight: inherit;
+}
+
+ul, ul li {
+    list-style: none;
+}
+
+img {
+    vertical-align: top;
+}
+
+img, svg {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Form */
+input, textarea, button, select {
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+}
+
+input::-ms-clear {
+    display: none;
+}
+
+button, input[type="submit"] {
+    display: inline-block;
+    box-shadow: none;
+    background-color: transparent;
+    background: none;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+input:focus, input:active,
+button:focus, button:active {
+    outline: none;
+}
+
+button::-moz-focus-inner {
+    padding: 0;
+    border: 0;
+}
+
+label {
+    cursor: pointer;
+}
+
+legend {
+    display: block;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.container {
+    max-width: 1140px;
+    padding: 0 15px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.section-cart {
+    padding: 70px 0 90px;
+}
+
+.section-cart__header {
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.title-1 {
+    font-size: 28px;
+    line-height: 1.3;
+    font-weight: 700;
+}
+
+.cart-header {
+    display: grid;
+    grid-template-columns: 2fr repeat(4, 2fr) 1fr;
+    column-gap: 30px;
+    padding: 22px 0;
+    background-color: #EAEFF2;
+    font-weight: 700;
+    font-size: 13px;
+    line-height: 1.2;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+}
+@media (max-width: 600px) {
+    .cart-header {
+        height: 1px;
+        padding: 0;
+    }
+    .cart-header > * {
+        display: none;
+    }
+}
+
+.cart-header__title {
+    grid-column-start: 2;
+}
+
+.cart-footer {
+    display: grid;
+    grid-template-columns: 2fr repeat(4, 2fr) 1fr;
+    column-gap: 30px;
+    padding: 19px 0;
+    background: #EAEFF2;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 1.2;
+}
+@media (max-width: 600px) {
+    .cart-footer {
+        /* padding-left: 15px;
+        padding-right: 15px; */
+        grid-template-columns: 1fr 1fr;
+    }
+}
+@media (max-width: 400px) {
+    .cart-footer {
+        grid-template-columns: 1fr;
+        row-gap: 10px;
+    }
+}
+
+.cart-footer__price {
+    grid-column-start: 5;
+}
+@media (max-width: 600px) {
+    .cart-footer__count {
+        /* grid-column-start: 1; */
+        grid-column: 1;
+    }
+}
+
+
+.product {
+    display: grid;
+    grid-template-columns: 2fr repeat(4, 2fr) 1fr;;
+    column-gap: 20px;
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(126, 155, 189, 0.3);
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 1.3;
+}
+@media (max-width: 600px) {
+    .product {
+        grid-template-columns: repeat(6, 1fr);
+        grid-auto-rows: minmax(60px, auto);
+        column-gap: 15px;
+        row-gap: 10px;
+    }
+}
+
+.product > * {
+    align-self: center;
+}
+
+/* .product__img {
+  justify-self: center;
+}
+@media (max-width: 600px) {
+  .product__img {
+    grid-column: 1/3;
+  }
+} */
+
+@media (max-width: 600px) {
+    .product__title {
+        grid-column: 3/-1;
+    }
+}
+
+@media (max-width: 600px) {
+    .product__count {
+        grid-column: 1/3;
+        justify-self: center;
+        margin-left: 30px;
+    }
+}
+
+@media (max-width: 600px) {
+    .product__price {
+        grid-column: 3/6;
+        margin-left: 30px;
+    }
+}
+
+.product__controls {
+    justify-self: center;
+}
+
+.count {
+    display: flex;
+    column-gap: 10px;
+    align-items: center;
+    margin-left: 25px;
+}
+
+/* .count__box {
+  width: 40px;
+  height: 30px;
+  background: #EAEFF2;
+  border-radius: 3px;
+} */
+
+.count__input {
+    max-width: 100%;
+    padding-top: 4px;
+    background-color: transparent;
+    text-align: center;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 1.3;
+}
+
+.count__input::-webkit-inner-spin-button,
+.count__input::-webkit-outer-spin-button {
+    appearance: none;
+}
+
+.count__controls {
+    display: flex;
+    flex-direction: column;
+    row-gap: 9px;
+}
+
+.count__controls img {
+    display: block;
+}
+
+.product__img {
+    height: 130px;
+    max-width: 500px;
+    justify-self: center;
+}
+
+.product__img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+    border-radius: 10px;
+}
+
+.person__content {
+    display: flex;
+    align-items:center;
+    margin-top: auto;
+    margin-bottom: 30px;
+    align-self:safe; /* Новое свойство для выравнивания внутри контейнера */
+}
+
+.person__image {
+    display: flex;
+    flex-direction: column;
+    height: 30px;
+    width: 30px;
+}
+
+.person__image img {
+    width: 100%;
+    height: 100%;
+}
+
+
+
+/* Table styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px; /* Add some margin for better spacing */
+}
+
+th, td {
+    border: 1px solid #002248; /* Add border for better visibility */
+    padding: 8px;
+    text-align: left;
+}
+
+/* Header row styles */
+th {
+    background-color: #002248;
+    color: #fff;
+}
+
+/* Alternate row background color for better readability */
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* Styling the ban button */
+form {
+    display: inline;
+    margin: 0;
+}
+
+input[type="submit"] {
+    background-color: #002248;
+    color: #fff;
+    padding: 5px 10px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+}
+
+th {
+    background-color: #EAEFF2;
+    color: #002248;
+}
+
+.card-user {
+    color: #002248;
+}
+
+
+
+/* корзина */
+.cartBtn {
+    border: none;
+    border-radius: 0px;
+    padding: 14px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    color: white;
+    font-weight: 500;
+    position: relative;
+    background-color: #104d8a;
+    box-shadow: 0 20px 30px -7px rgba(27, 27, 27, 0.219);
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    overflow: hidden;
+    border-radius: 10px;
+    margin-left: 20px;
+}
+
+.cartBtn:hover {
+    transition: 1ms;
+    border: none;
+    background-color: #1162b3;
+    color: #fff; /*текст буквы*/
+    text-decoration: none;
+}
+
+.cart {
+    z-index: 2;
+}
+
+.cartBtn:active {
+    transform: scale(0.96);
+}
+
+.product {
+    position: absolute;
+    width: 12px;
+    border-radius: 3px;
+    content: "";
+    left: 23px;
+    bottom: 23px;
+    opacity: 0;
+    z-index: 1;
+    fill: rgb(211, 211, 211);
+}
+
+/* корзина */
+.cartBtn {
+    border: none;
+    border-radius: 0px;
+    padding: 14px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    color: white;
+    font-weight: 500;
+    position: relative;
+    background-color: #104d8a;
+    box-shadow: 0 20px 30px -7px rgba(27, 27, 27, 0.219);
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    overflow: hidden;
+    border-radius: 10px;
+    margin-left: 20px;
+}
+
+.cartBtn:hover {
+    transition: 1ms;
+    border: none;
+    background-color: #1162b3;
+    color: #fff; /*текст буквы*/
+    text-decoration: none;
+}
+
+.cart {
+    z-index: 2;
+}
+
+.cartBtn:active {
+    transform: scale(0.96);
+}

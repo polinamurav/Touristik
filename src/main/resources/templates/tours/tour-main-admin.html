@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tour List</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&family=Raleway:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&family=Playfair+Display:wght@700&family=Raleway:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&family=Philosopher:wght@700&family=Playfair+Display:wght@700&family=Raleway:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" th:href="@{/css/tour-main-admin.css}" />
+  <link rel="website icon" type="png" href="img/icon.png">
+
+  <meta name="_csrf" content="${_csrf.token}"/>
+  <meta name="_csrf_header" content="${_csrf.headerName}"/>
+
+</head>
+<body>
+
+<!-- шапка HEADER-->
+<div th:replace="blocks/header-admin :: header"></div>
+
+<!-- Остальная часть без шапки INTRO -->
+<div class="intro">
+  <div class="container">
+
+    <div class="section__head">
+      <h2 class="section__title">Выбери свой маршрут</h2>
+    </div>
+
+    <div class="cards">
+      <div class="cards__item">
+        <article class="card">
+          <div class="plus-card">
+            <a th:href="@{/tour-admin/add}" class="button plus">
+<!--              <img src="img/plus-icon.png" alt="">-->
+              <img th:src="@{/img/plus-icon.png}" alt="">
+              <span class="text">добавить</span>
+            </a>
+
+          </div>
+        </article>
+      </div>
+
+      <div class="cards__item" th:each="tour : ${tourList}">
+        <article class="card">
+
+            <img th:if="${tour.images != null}" th:src="@{/images/{id}(id=${tour.images.id})}" alt="Изображение тура" class="card__image"/>
+
+          <div class="card__content">
+            <div class="rating-result">
+<!--                                        &lt;!&ndash; Используем th:each для циклического вывода звезд в зависимости от рейтинга &ndash;&gt;-->
+<!--                                        <span th:each="star : ${#numbers.sequence(1, tour.stars)}" class="active"></span>-->
+<!--                                        &lt;!&ndash; Используем th:each для циклического вывода пустых звезд, если рейтинг не достигает максимального значения (5) &ndash;&gt;-->
+<!--                                        <span th:each="star : ${#numbers.sequence(tour.stars + 1, 5)}"></span>-->
+
+              <span th:each="star : ${#numbers.sequence(1, 5)}"
+                    th:class="${star le tour.stars} ? 'active' : ''"></span>
+            </div>
+            <h3 class="card__title" th:text="${tour.hotel_name}"></h3>
+            <p class="card__descr" th:text="${tour.country}"></p>
+            <div class="card_fly_content">
+              <p class="card__fly">
+                <!-- Перелет включен -->
+                Вылет <span th:text="${tour.fly_date}"></span> на <span th:text="${tour.night}"></span> ночей
+              </p>
+            </div>
+            <div class="person__content">
+<!--              <img src="img/person icon.png" alt="Люди">-->
+              <img th:src="@{/img/person icon.png}" alt="Люди">
+              <div class="person" th:text="${tour.people} + ' чел.'"></div>
+            </div>
+            <h2 class="card__price" th:text="'от ' + ${tour.price} + '$'"></h2>
+
+            <div class="button-admin">
+              <a th:href="@{/tour/edit/{id}(id=${tour.id})}" class="btn card__btn-add">Изменить тур!</a>
+
+
+<!--              Добавление скрытого поля _method со значением delete позволит Thymeleaf отправить HTTP-запрос с методом DELETE.-->
+<!--              После этого, метод delete в вашем контроллере будет обрабатывать запрос с методом POST и-->
+<!--              URL /tour/delete/{id} как запрос с методом DELETE.-->
+<!--                <form th:method="delete" th:action="@{/delete-tour}" style="display: inline;">-->
+<!--                    <input type="hidden" name="id" th:value="${tour.id}">-->
+<!--                    <button type="submit" class="button card__btn-delete">-->
+<!--                        <input type="hidden" name="_csrf" th:value="${_csrf.token}">-->
+<!--&lt;!&ndash;                    <form th:method="post" th:action="@{/delete-tour}" style="display: inline;">&ndash;&gt;-->
+<!--&lt;!&ndash;                <input type="hidden" name="_method" value="delete">&ndash;&gt;-->
+<!--&lt;!&ndash;                <input type="hidden" name="id" th:value="${tour.id}">&ndash;&gt;-->
+<!--&lt;!&ndash;                <button type="submit" class="button card__btn-delete">&ndash;&gt;-->
+<!--                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20" height="25" width="25">-->
+<!--                      <path fill="#6361D9" d="M8.78842 5.03866C8.86656 4.96052 8.97254 4.91663 9.08305 4.91663H11.4164C11.5269 4.91663 11.6329 4.96052 11.711 5.03866C11.7892 5.11681 11.833 5.22279 11.833 5.33329V5.74939H8.66638V5.33329C8.66638 5.22279 8.71028 5.11681 8.78842 5.03866ZM7.16638 5.74939V5.33329C7.16638 4.82496 7.36832 4.33745 7.72776 3.978C8.08721 3.61856 8.57472 3.41663 9.08305 3.41663H11.4164C11.9247 3.41663 12.4122 3.61856 12.7717 3.978C13.1311 4.33745 13.333 4.82496 13.333 5.33329V5.74939H15.5C15.9142 5.74939 16.25 6.08518 16.25 6.49939C16.25 6.9136 15.9142 7.24939 15.5 7.24939H15.0105L14.2492 14.7095C14.2382 15.2023 14.0377 15.6726 13.6883 16.0219C13.3289 16.3814 12.8414 16.5833 12.333 16.5833H8.16638C7.65805 16.5833 7.17054 16.3814 6.81109 16.0219C6.46176 15.6726 6.2612 15.2023 6.25019 14.7095L5.48896 7.24939H5C4.58579 7.24939 4.25 6.9136 4.25 6.49939C4.25 6.08518 4.58579 5.74939 5 5.74939H6.16667H7.16638ZM7.91638 7.24996H12.583H13.5026L12.7536 14.5905C12.751 14.6158 12.7497 14.6412 12.7497 14.6666C12.7497 14.7771 12.7058 14.8831 12.6277 14.9613C12.5495 15.0394 12.4436 15.0833 12.333 15.0833H8.16638C8.05588 15.0833 7.94989 15.0394 7.87175 14.9613C7.79361 14.8831 7.74972 14.7771 7.74972 14.6666C7.74972 14.6412 7.74842 14.6158 7.74584 14.5905L6.99681 7.24996H7.91638Z" clip-rule="evenodd" fill-rule="evenodd"></path>-->
+<!--                  </svg>-->
+<!--                  <span class="tooltiptext">удалить</span>-->
+<!--                </button>-->
+<!--              </form>-->
+
+                <form method="post" th:action="@{/delete-tour}" style="display: inline;">
+                    <input type="hidden" name="_method" value="delete">
+                    <input type="hidden" name="id" th:value="${tour.id}">
+                    <button type="submit" class="button card__btn-delete">
+                        <input type="hidden" name="_csrf" th:value="${_csrf.token}">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20" height="25" width="25">
+                            <path fill="#6361D9" d="M8.78842 5.03866C8.86656 4.96052 8.97254 4.91663 9.08305 4.91663H11.4164C11.5269 4.91663 11.6329 4.96052 11.711 5.03866C11.7892 5.11681 11.833 5.22279 11.833 5.33329V5.74939H8.66638V5.33329C8.66638 5.22279 8.71028 5.11681 8.78842 5.03866ZM7.16638 5.74939V5.33329C7.16638 4.82496 7.36832 4.33745 7.72776 3.978C8.08721 3.61856 8.57472 3.41663 9.08305 3.41663H11.4164C11.9247 3.41663 12.4122 3.61856 12.7717 3.978C13.1311 4.33745 13.333 4.82496 13.333 5.33329V5.74939H15.5C15.9142 5.74939 16.25 6.08518 16.25 6.49939C16.25 6.9136 15.9142 7.24939 15.5 7.24939H15.0105L14.2492 14.7095C14.2382 15.2023 14.0377 15.6726 13.6883 16.0219C13.3289 16.3814 12.8414 16.5833 12.333 16.5833H8.16638C7.65805 16.5833 7.17054 16.3814 6.81109 16.0219C6.46176 15.6726 6.2612 15.2023 6.25019 14.7095L5.48896 7.24939H5C4.58579 7.24939 4.25 6.9136 4.25 6.49939C4.25 6.08518 4.58579 5.74939 5 5.74939H6.16667H7.16638ZM7.91638 7.24996H12.583H13.5026L12.7536 14.5905C12.751 14.6158 12.7497 14.6412 12.7497 14.6666C12.7497 14.7771 12.7058 14.8831 12.6277 14.9613C12.5495 15.0394 12.4436 15.0833 12.333 15.0833H8.16638C8.05588 15.0833 7.94989 15.0394 7.87175 14.9613C7.79361 14.8831 7.74972 14.7771 7.74972 14.6666C7.74972 14.6412 7.74842 14.6158 7.74584 14.5905L6.99681 7.24996H7.91638Z" clip-rule="evenodd" fill-rule="evenodd"></path>
+                        </svg>
+                        <span class="tooltiptext">удалить</span>
+                    </button>
+                </form>
+
+
+            </div>
+          </div>
+        </article>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>

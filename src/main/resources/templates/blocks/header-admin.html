@@ -1,0 +1,25 @@
+<div th:fragment="header" xmlns:th="http://www.w3.org/1999/xhtml">
+    <header class="header">
+        <div class="container">
+            <div class="header__inner">
+                <a href="/">
+                    <div class="header__logo">
+                        <img th:src="@{/img/Touristik.png}" alt="" style="width:130px;">
+                    </div>
+                </a>
+
+                <!-- навигация-->
+                <nav class="nav">
+                    <a class="nav__link" href="/">Главная</a>
+                    <a class="nav__link" href="/tour-admin">Туры</a>
+                    <a class="nav__link" href="/admin">Пользователи</a>
+                </nav>
+<!--                <form action="/logout" method="post">-->
+<!--                    <input type="hidden" name="_csrf" value="${_csrf_token}">-->
+<!--                    <button type="submit" class="btn">Выйти</button>-->
+<!--                </form>-->
+                <a class="btn" href="/login">Выйти</a>
+            </div>
+        </div>
+    </header>
+</div>

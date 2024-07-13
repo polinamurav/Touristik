@@ -1,0 +1,215 @@
+<!--<!DOCTYPE HTML>-->
+<!--<html xmlns:th="http://www.thymeleaf.org" xmlns:form="http://www.w3.org/1999/xhtml">-->
+<!--<html xmlns:th="http://www.thymeleaf.org" xmlns:form="http://www.w3.org/1999/xhtml" xmlns:spring="http://www.springframework.org/tags">-->
+<!--<head>-->
+<!--    <meta charset="utf-8">-->
+<!--    <link rel="preconnect" href="https://fonts.googleapis.com">-->
+<!--    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>-->
+<!--    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&family=Raleway:wght@400;600;700&display=swap" rel="stylesheet">-->
+<!--    <link rel="stylesheet" type="text/css" th:href="@{/resources/css/create.css}" />-->
+<!--    <title>Touristik</title> &lt;!&ndash; <title>ActiveBox</title> это наше название в поиске &ndash;&gt;-->
+
+<!--    <link rel="website icon" type="png"-->
+<!--          href="img/icon.png">-->
+<!--</head>-->
+<!--<body>-->
+
+<!--<div class="login-page">-->
+<!--    <div class="form">-->
+<!--        <form class="register-form" method="POST">-->
+<!--            <h2><i class="fas fa-lock"></i> Register</h2>-->
+<!--            <spring:bind path="username">-->
+<!--                <div class="form-group ${status.error ? 'has-error' : ''}">-->
+<!--                    <form:input type="text" path="username" class="form-control" placeholder="Username"-->
+<!--                                autofocus="true"></form:input>-->
+<!--                    <form:errors path="username"></form:errors>-->
+<!--                </div>-->
+<!--            </spring:bind>-->
+
+<!--            <spring:bind path="password">-->
+<!--                <div class="form-group ${status.error ? 'has-error' : ''}">-->
+<!--                    <form:input type="password" path="password" class="form-control" placeholder="Password"></form:input>-->
+<!--                    <form:errors path="password"></form:errors>-->
+<!--                </div>-->
+<!--            </spring:bind>-->
+<!--&lt;!&ndash;            <input type="text" placeholder="Full Name *" required/>&ndash;&gt;-->
+<!--&lt;!&ndash;            <input type="text" placeholder="Username *" required/>&ndash;&gt;-->
+<!--&lt;!&ndash;            <input type="email" placeholder="Email *" required/>&ndash;&gt;-->
+<!--&lt;!&ndash;            <input type="password" placeholder="Password *" required/>&ndash;&gt;-->
+<!--            <button type="submit">create</button>-->
+<!--            <p class="message">Already registered? <a href="/register">Sign In</a></p>-->
+<!--        </form>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!--</body>-->
+<!--</html>-->
+
+
+
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&family=Raleway:wght@400;600;700&display=swap" rel="stylesheet">
+<!--    <link rel="stylesheet" type="text/css" th:href="@{/resources/css/create.css}" />-->
+    <title>Touristik</title>
+
+    <link rel="website icon" type="png"
+          href="img/icon.png">
+
+    <meta name="_csrf" content="${_csrf.token}"/>
+    <meta name="_csrf_header" content="${_csrf.headerName}"/>
+    <style>
+        body {
+            margin: 0; /*!это отступ у body есть*/
+            font-family: 'Raleway', sans-serif;
+            font-size: 14px;
+            color: #697687;
+            background-color: #011b1c;
+        }
+
+        .login-page {
+            width: 400px;
+            padding: 8% 0 0;
+            margin: auto;
+        }
+        .register-form {
+            position: relative;
+            z-index: 1;
+            background: #03363a;
+            max-width: 400px;
+            margin: 0 auto 100px;
+            padding: 45px;
+            text-align: center;
+            border-radius: 15px;
+            box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+        }
+        .register-form input {
+            font-family: "Poppins", sans-serif;
+            outline: 0;
+            background: #f2f2f2;
+            width: 100%;
+            border: 0;
+            border-radius: 7px;
+            margin: 0 0 15px;
+            padding: 15px;
+            box-sizing: border-box;
+            font-size: 14px;
+
+        }
+        .register-form button {
+            font-family: "Poppins", sans-serif;
+            text-transform: uppercase;
+            outline: 0;
+            background: #0c787d;
+            width: 100%;
+            border: 0;
+            padding: 15px;
+            color: #FFFFFF;
+            border-radius: 7px;
+            font-size: 14px;
+            -webkit-transition: all 0.3 ease;
+            transition: all 0.3 ease;
+            cursor: pointer;
+        }
+        .form button:hover,.form button:active,.form button:focus {
+            background: #03363a;
+        }
+        .form .message {
+            margin: 15px 0 0;
+            color: #b3b3b3;
+            font-size: 12px;
+        }
+        .form .message a {
+            color: #0c787d;
+            text-decoration: none;
+        }
+
+        /*крестик*/
+        .closeModal {
+            position: absolute;
+            top: 30px;
+            right: 20px;
+            width: 24px;
+            height: 24px;
+            opacity: 0.2;
+            cursor: pointer;
+            transition: opacity ease 0.5s;
+
+            &:hover {
+                opacity: 1;
+            }
+        }
+
+        .closeModal::before,
+        .closeModal::after {
+            content: '';
+            position: absolute;
+            top: 10px;
+            display: block;
+            width: 24px;
+            height: 3px;
+            background: #fff;
+        }
+
+        .closeModal::before {
+            transform: rotate(45deg);
+        }
+
+        .closeModal::after {
+            transform: rotate(-45deg);
+        }
+    </style>
+</head>
+<body>
+
+<!--<form action="@{/registration}" method="post">-->
+    <!-- куда будет посылать эта форма свои данные. для объекта tour будет создаваться форма -->
+<!--    <form th:method="POST" th:action="@{/user}" th:object="${user}">-->
+<!--        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />-->
+
+<!--        <div class="login-page">-->
+<!--    <div class="form">-->
+<!--        <form class="register-form" th:action="@{/registration}" method="POST">-->
+<!--            <h2><i class="fas fa-lock"></i> Регистрация</h2>-->
+<!--&lt;!&ndash;            <input type="text" placeholder="Имя..." name="name" class="input" th:field="*{name}" id="name" required/>&ndash;&gt;-->
+<!--            <input type="text" placeholder="Имя..." name="name" class="input" id="name" required/>-->
+<!--            <input type="hidden" data-th-name="${_csrf.parameterName}" data-th-value="${_csrf.token}">-->
+<!--            <input type="text" placeholder="Логин..." name="username" class="input" id="username" required/>-->
+<!--            <input type="hidden" data-th-name="${_csrf.parameterName}" data-th-value="${_csrf.token}">-->
+<!--            <input type="email" placeholder="Почта..." name="email" class="input" id="email" required/>-->
+<!--            <input type="hidden" data-th-name="${_csrf.parameterName}" data-th-value="${_csrf.token}">-->
+<!--            <input type="password" placeholder="Пароль... " name="password" class="input" id="password" required/>-->
+<!--            <input type="hidden" data-th-name="${_csrf.parameterName}" data-th-value="${_csrf.token}">-->
+<!--            <input type="hidden" name="_csrf" value="${_csrf.token}">-->
+<!--            <button type="submit">Создать</button>-->
+<!--            <p class="message">Уже зарегистрирован? <a href="/register">Войти</a></p>-->
+<!--        </form>-->
+<!--    </div>-->
+
+
+            <div class="login-page">
+                <div class="form">
+                    <form class="register-form" th:action="@{/registration}" method="POST">
+                        <h2><i class="fas fa-lock"></i> Регистрация</h2>
+                        <input type="text" placeholder="Имя..." name="name" class="input" id="name" required/>
+                        <input type="text" placeholder="Логин..." name="username" class="input" id="username" required/>
+                        <input type="email" placeholder="Почта..." name="email" class="input" id="email" required/>
+                        <input type="password" placeholder="Пароль..." name="password" class="input" id="password" required/>
+                        <input type="hidden" data-th-name="${_csrf.parameterName}" data-th-value="${_csrf.token}">
+                        <button type="submit">Создать</button>
+                        <p class="message">Уже зарегистрирован? <a href="/login">Войти</a></p>
+                    </form>
+                </div>
+            </div>
+</div>
+</form>
+<!--<#if errorMessage??>-->
+<!--<h2 style="color: red">${errorMessage}</h2>-->
+<!--</#if>-->
+
+</body>
+</html>

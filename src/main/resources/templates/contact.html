@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<!-- служебная часть -->
+
+<head>
+    <!-- заголовок страницы -->
+    <title>Контакты</title>
+    <!-- настраиваем служебную информацию для браузеров -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- загружаем Бутстрап -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style >
+        /*Container===================*/
+        .container {
+            width: 100%;
+            max-width: 1170px; /*если экран меньше 1170px, то будет занимать 100% экрана*/
+            margin: 0 auto; /*выравнивание по центру */
+        }
+
+        /* Header (шапка)======================*/
+        .header {
+            width: 100%;
+            /* position: absolute; */
+            top: 0;
+            left: 0;
+            z-index: 1000;
+
+            height: 100px;
+            background-color: rgba(35, 78, 122, 0.219);
+            /* background-color:#669EF2; */
+        }
+
+        .header__inner {
+            display: flex;
+            justify-content: space-between; /*разделить наши элементы*/
+            align-items: center; /*выровнять элементы с картинкой по центру*/
+            padding: 30px 20px 0; /*внутренний отступ в самом начале наверху*/
+
+        }
+
+
+        /* Nav (наши кнопки навигации)======================*/
+        .nav {
+            display: flex; /*соединить все элементы*/
+            font-size: 16px;
+            font-weight: bold 700;
+            align-items: center;
+        }
+
+        .nav__link {
+            margin-left: 40px;
+
+            color: #002248;
+            text-decoration: none; /*подчеркивание*/
+            /*!* opacity: .75; прозрачность наших значков*/
+        }
+
+        .nav__link:hover {
+            /*text-decoration: underline; !*при наводе на них*!*/
+        }
+
+        .btn {
+            display: inline-block;
+            vertical-align: top;
+            background-color: #0c787d; /*#5F8FA2*/
+            padding: 14px 20px;
+
+            color: #fff;
+
+            letter-spacing: 2px;
+            cursor: pointer;
+            border-radius: 10px;
+            border: 2px dashed #669EF2;
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+            transition: .4s;
+        }
+
+        /*при нажатии кнопки*/
+        .btn:hover {
+            transition: .4s;
+            border: 2px dashed #002248; /*края при нажатии кнопки цвета*/
+            background-color: #fff;
+            color: #002248; /*текст буквы*/
+        }
+
+
+        /* Intro (часть кроме шапки)======================*/
+        .intro {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            /* background-color: rgba(35, 78, 122, 0.219); */
+            /* офигенный цвет как надо! - rgb(220, 228, 244) */
+            color: #002248;
+            margin: 0;
+            padding: 50px;
+        }
+        img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        h1 {
+            font-size: 50px;
+            margin-top: 30px;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 18px;
+        }
+
+        /* корзина */
+        .cartBtn {
+            border: none;
+            border-radius: 0px;
+            padding: 14px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
+            color: white;
+            font-weight: 500;
+            position: relative;
+            background-color: #104d8a;
+            box-shadow: 0 20px 30px -7px rgba(27, 27, 27, 0.219);
+            transition: all 0.3s ease-in-out;
+            cursor: pointer;
+            overflow: hidden;
+            border-radius: 10px;
+            margin-left: 20px;
+        }
+
+        .cartBtn:hover {
+            transition: 1ms;
+            border: none;
+            background-color: #1162b3;
+            color: #fff; /*текст буквы*/
+            text-decoration: none;
+        }
+
+        .cart {
+            z-index: 2;
+        }
+
+        .cartBtn:active {
+            transform: scale(0.96);
+        }
+
+    </style>
+</head>
+
+
+<!-- шапка HEADER-->
+<div th:if="${user != null and user.isAdmin()}">
+    <div th:replace="blocks/header-admin :: header"></div>
+</div>
+<div th:if="${user != null and !user.isAdmin()}">
+    <div th:replace="blocks/header-user :: header"></div>
+</div>
+<div th:if="${user == null}">
+    <div th:replace="blocks/header :: header"></div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h2>Контакты для связи</h2>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <p>Телефон: +375 (29) 631-00-19</p>
+            <p>Почта: <a href="mailto: polinamur3@gmail.com"> polinamur3@gmail.com</a></p>
+            <p>Инстаграм: touristik</p>
+            <p>Телеграм: @polinamurav</p>
+        </div>
+    </div>
+</div>
+</body>
+<!-- конец всей страницы -->
+
+</html>

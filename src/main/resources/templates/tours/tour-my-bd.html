@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tour List</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&family=Raleway:wght@400;600;700&display=swap" rel="stylesheet">
+    <!--    <link href="<link rel="preconnect href="https://fonts.googleapis.com">-->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&family=Playfair+Display:wght@700&family=Raleway:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&family=Philosopher:wght@700&family=Playfair+Display:wght@700&family=Raleway:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+
+    <!--  <link rel="stylesheet" th:href="@{/css/tour-main-admin.css}" href="/css/tour-main-admin.css">-->
+    <!--    <link rel="stylesheet" type="text/css" th:href="@{/resources/css/tour-main.css}" />-->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/tour-main.css}" />
+
+    <link rel="website icon" type="png" href="img/icon.png">
+
+    <meta name="_csrf" content="${_csrf.token}"/>
+    <meta name="_csrf_header" content="${_csrf.headerName}"/>
+
+</head>
+<body>
+
+<!-- шапка HEADER-->
+<div th:if="${user != null and user.isAdmin()}">
+    <div th:replace="blocks/header-admin :: header"></div>
+</div>
+<div th:if="${user != null and !user.isAdmin()}">
+    <div th:replace="blocks/header-user :: header"></div>
+</div>
+<div th:if="${user == null}">
+    <div th:replace="blocks/header :: header"></div>
+</div>
+
+<!-- Остальная часть без шапки INTRO -->
+<div class="intro">
+    <div class="container">
+
+        <div class="section__head">
+            <h2 class="section__title">Выбери свой маршрут</h2>
+        </div>
+
+
+
+
+
+    <div class="sort_and_search">
+            <div class="search__head">
+<!--                <form th:method="post" th:action="@{/search-tour}" style="display: inline;">-->
+                    <form action="/tour" method="get">
+                    <input class="input" type="text" name="title" placeholder="Поиск...">
+                    <!--                <button type="submit">Найти</button>-->
+<!--                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">-->
+                </form>
+            </div>
+
+            <div class="sort__head">
+                <form th:method="post" th:action="@{/sort-tour-asc}" style="display: inline;">
+                    <button type="submit">
+                        Сортировать по цене <span class="arrow-4-left"></span>
+                    </button>
+<!--                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">-->
+                    <input type="hidden" name="sortField" value="price">
+                </form>
+            </div>
+        </div>
+
+
+
+
+
+        <div class="cards">
+
+            <div class="cards__item" th:each="tour : ${tourList}">
+                <article class="card">
+
+                    <img th:if="${tour.images != null}" th:src="@{/images/{id}(id=${tour.images.id})}" alt="Изображение тура" class="card__image"/>
+
+                    <div class="card__content">
+                        <div class="rating-result">
+                            <!--                            &lt;!&ndash; Используем th:each для циклического вывода звезд в зависимости от рейтинга &ndash;&gt;-->
+                            <!--                            <span th:each="star : ${#numbers.sequence(1, tour.stars)}" class="active"></span>-->
+                            <!--                            &lt;!&ndash; Используем th:each для циклического вывода пустых звезд, если рейтинг не достигает максимального значения (5) &ndash;&gt;-->
+                            <!--                            <span th:each="star : ${#numbers.sequence(tour.stars + 1, 5)}"></span>-->
+
+                            <span th:each="star : ${#numbers.sequence(1, 5)}"
+                                  th:class="${star le tour.stars} ? 'active' : ''"></span>
+                        </div>
+                        <h3 class="card__title" th:text="${tour.hotel_name}"></h3>
+                        <p class="card__descr" th:text="${tour.country}"></p>
+                        <div class="card_fly_content">
+                            <p class="card__fly">
+                                <!-- Перелет включен -->
+                                Вылет <span th:text="${tour.fly_date}"></span> на <span th:text="${tour.night}"></span> ночей
+                            </p>
+                        </div>
+                        <div class="person__content">
+                            <!--              <img src="img/person icon.png" alt="Люди">-->
+                            <img th:src="@{/img/person icon.png}" alt="Люди">
+                            <div class="person" th:text="${tour.people} + ' чел.'"></div>
+                        </div>
+                        <h2 class="card__price" th:text="'от ' + ${tour.price} + '$'"></h2>
+
+<!--                        <a th:href="@{/tour/choose}" class="btn card__btn">Выбрать тур!</a>-->
+
+<!--                        <form th:action="@{/tour/choose}" method="post">-->
+<!--                            <input type="hidden" name="tourId" th:value="${tour.id}">-->
+<!--                            <input type="hidden" name="_csrf" th:value="${_csrf.token}">-->
+<!--                            <button type="submit" class="btn card__btn">Выбрать тур!</button>-->
+<!--                        </form>-->
+
+                        <form th:action="@{/tour/choose}" method="post">
+                            <input type="hidden" name="tourId" th:value="${tour.id}">
+<!--                            <input type="hidden" name="_csrf" th:value="${_csrf.token}">-->
+                            <button type="submit" class="btn card__btn" >Выбрать тур!</button>
+                        </form>
+
+                    </div>
+                </article>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

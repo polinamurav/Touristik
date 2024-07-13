@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&family=Raleway:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&family=Playfair+Display:wght@700&family=Raleway:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&family=Philosopher:wght@700&family=Playfair+Display:wght@700&family=Raleway:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <title>Touristik</title>
+
+    <link rel="website icon" type="png" href="img/icon.png">
+
+    <meta name="_csrf" content="${_csrf.token}"/>
+    <meta name="_csrf_header" content="${_csrf.headerName}"/>
+
+    <link rel="stylesheet" type="text/css" th:href="@{/css/about-us.css}" />
+</head>
+<body>
+
+
+<!-- шапка HEADER-->
+<div th:if="${user != null and user.isAdmin()}">
+    <div th:replace="blocks/header-admin :: header"></div>
+</div>
+<div th:if="${user != null and !user.isAdmin()}">
+    <div th:replace="blocks/header-user :: header"></div>
+</div>
+<div th:if="${user == null}">
+    <div th:replace="blocks/header :: header"></div>
+</div>
+
+<!--остальная часть без шапки INTRO-->
+<div class="main">
+<div class="cards">
+    <div class="container-main">
+
+        <div class="section__head">
+            <h2 class="section__title">Что мы можем предложить вам</h2>
+        </div>
+
+        <div class="cards-holder">
+
+            <div class="card">
+                <div class="card-image">
+                    <img class="card-img" th:src="@{/img/Sea_icon.png}" alt="Sea_icon">
+                </div>
+                <div class="card-title">
+                    Различные направления
+                </div>
+                <div class="card-desc">
+                    У нас вы можете выбрать тур на свой вкус - от романтического отдыха
+                    на островах до активного путешествия по горным тропам
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-image">
+                    <img class="card-img" th:src="@{/img/grass_icon.png}" alt="Grass_icon">
+                </div>
+                <div class="card-title">
+                    Все включено
+                </div>
+                <div class="card-desc">
+                    Мы предоставляем туры, которые включают в себя не только проживание в отеле,
+                    но и питание, и трансферы
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-image">
+                    <img class="card-img" th:src="@{/img/building_icon.png}" alt="Building_icon">
+                </div>
+                <div class="card-title">
+                    Доступные цены
+                </div>
+                <div class="card-desc">
+                    Мы учитываем бюджет каждого клиента и помогаем подобратаь оптимальный вариант по цене и качеству
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="history">
+    <!-- <div class="container"></div> -->
+
+    <div class="history-holder">
+
+        <div class="history-info">
+            <div class="history-title">
+                Наша История
+            </div>
+
+            <div class="history-desc">
+                Наше туристическое агентство Touristik начало свою историю с мечтой помочь людям открыть для себя новые места и культуры. Наши основатели были опытными путешественниками, которые знали, как важно иметь надежного партнера в организации поездки.
+                Сегодня наше агентство является одним из лидеров на рынке туристических услуг, мы имеем множество довольных клиентов, которые регулярно обращаются к нам за помощью в организации своих путешествий.
+            </div>
+
+            <div class="history-number">
+                <div class="number-item">
+                    5 <span>Лет на рынке</span>
+                </div>
+
+                <div class="number-item">
+                    102 <span>Довольные клиенты</span>
+                </div>
+
+                <div class="number-item">
+                    15 <span>Отслеживание туров</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="history-images">
+            <img class="images-1" th:src="@{/img/mountain-about-us.jpg}" alt="">
+            <img class="images-2" th:src="@{/img/posts/venice-about-us.jpg}" alt="">
+            <img class="images-3" th:src="@{/img/balloons-about-us.jpg}" alt="">
+        </div>
+    </div>
+
+</div>
+
+
+
+</div>
+</body>
+</html>

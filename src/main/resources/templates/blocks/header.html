@@ -1,0 +1,30 @@
+<!-- шапка HEADER-->
+<div th:fragment="header" xmlns:th="http://www.w3.org/1999/xhtml">
+    <header class="header">
+        <div class="container">
+            <div class="header__inner">
+                <a href="/">
+                    <div class="header__logo">
+                        <!--                    <img th:src="@{/img/Touristik.png}" alt="" style="width:130px;">-->
+                        <img th:src="@{/img/Touristik.png}" alt="" style="width:130px;">
+                    </div>
+                </a>
+
+                <!-- навигация-->
+                <nav class="nav">
+                    <a class="nav__link" href="/">Главная</a>
+                    <a class="nav__link" href="/tour">Туры</a>
+                    <a class="nav__link" href="/about">Про нас</a>
+                    <a class="nav__link" href="/contact">Контакты</a>
+                </nav>
+                <!--            <button class="btn" href="/register">Register</button>-->
+                <a class="btn" href="/login">Личный кабинет</a>
+                <!--            <div class="btn">-->
+                <!--                <form th:action="@{/logout}" method="post">-->
+                <!--                    <input type="submit" value="Sign Out"/>-->
+                <!--                </form>-->
+                <!--            </div>-->
+            </div>
+        </div>
+    </header>
+</div>

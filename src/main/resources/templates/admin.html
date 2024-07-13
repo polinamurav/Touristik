@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&family=Raleway:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&family=Playfair+Display:wght@700&family=Raleway:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&family=Philosopher:wght@700&family=Playfair+Display:wght@700&family=Raleway:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" th:href="@{/css/busket-user.css}" />
+    <title>Touristik</title>
+
+    <link rel="website icon" type="png"
+          href="img/icon.png">
+
+
+    <meta name="_csrf" content="${_csrf.token}"/>
+    <meta name="_csrf_header" content="${_csrf.headerName}"/>
+
+    <title>Admin</title>
+</head>
+<body>
+<!-- шапка HEADER-->
+<div th:replace="blocks/header-admin :: header"></div>
+
+<div class="section__head">
+    <h1 class="section__admin">Панель администратора</h1>
+</div>
+
+
+<table>
+    <tr>
+        <th>Имя</th>
+        <th>Логин</th>
+        <th>Почта</th>
+        <th>Активность</th>
+        <th>Бан</th>
+    </tr>
+
+
+    <tr th:each="user : ${users}">
+        <div class="card-user">
+        <td th:text="${user.name}"></td>
+        <td th:text="${user.username}"></td>
+        <td th:text="${user.email}"></td>
+        <td th:text="${user.active}"></td>А
+        </div>
+        <td>
+
+            <form th:method="post" th:action="@{/admin-user-ban}" style="display: inline;">
+                <input type="hidden" name="id" th:value="${user.id}">
+                <input type="hidden" name="_csrf" th:value="${_csrf.token}">
+                <input type="submit" value="Бан">
+            </form>
+
+        </td>
+    </tr>
+
+<div th:if="${#lists.isEmpty(users)}">Пользователей нет</div>
+</table>
+
+
+
+</body>
+</html>

@@ -1,0 +1,509 @@
+body {
+    margin: 0; /*!это отступ у body есть*/
+    font-family: 'Raleway', sans-serif;
+    font-size: 14px;
+    color: #697687;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: border-box; /*!не нужно подсчитывать размер блока*/
+}
+
+h1,h2,h3,h4,h5,h6 {
+    margin: 0; /*отступ*/
+}
+
+p {
+    margin: 0 0 10px 0;
+}
+
+/*Container===================*/
+.container {
+    width: 100%;
+    max-width: 1170px; /*если экран меньше 1170px, то будет занимать 100% экрана*/
+    margin: 0 auto; /*выравнивание по центру */
+
+}
+
+/* Header (шапка)======================*/
+.header {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+
+    height: 100px;
+    /* background-color:#669EF2; */
+}
+
+.header__inner {
+    display: flex;
+    justify-content: space-between; /*разделить наши элементы*/
+    align-items: center; /*выровнять элементы с картинкой по центру*/
+    padding: 30px 20px 0; /*внутренний отступ в самом начале наверху*/
+
+}
+
+
+/* Nav (наши кнопки навигации)======================*/
+.nav {
+    display: flex; /*соединить все элементы*/
+    font-size: 16px;
+    font-weight: bold 700;
+    align-items: center;
+}
+
+.nav__link {
+    margin-left: 40px;
+
+    color: #002248;
+    text-decoration: none; /*подчеркивание*/
+    /* opacity: .75; прозрачность наших значков
+
+    transition: opacity .1s linear; */
+}
+
+.nav__link:hover {
+    text-decoration: underline; /*при наводе на них*/
+    /* opacity: 1; */
+}
+
+.btn {
+    display: inline-block;
+    vertical-align: top;
+    background-color: #0c787d; /*#5F8FA2*/
+    padding: 14px 40px;
+    color: #fff;
+
+    letter-spacing: 2px;
+    cursor: pointer;
+    border-radius: 10px;
+    border: 2px dashed #669EF2;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    transition: .4s;
+    text-decoration: none;
+}
+
+.btn--red {
+    background-color: #002248; /*5495f6*/
+    text-transform: uppercase; /*все буквы большие*/
+    text-decoration: none;
+}
+
+.card__btn {
+    /* margin-top: auto; */
+    border: none;
+    padding: 20px 60px;
+    color: #fff;
+    background-color: #104d8a;
+    /* 104d8a */
+    /* rgb(156, 40, 112) 0, 72; */
+    cursor: pointer;
+    text-align: center;
+    /* margin: auto;
+    align-items: flex-start; */
+    font-size: medium;
+    margin-top: 10px; /* Изменено значение для отступа сверху */
+    margin-bottom: 10px; /* Установлен отступ снизу */
+}
+
+.btn span:last-child {
+    display: none;
+}
+
+/*при нажатии кнопки*/
+.btn:hover {
+    transition: .4s;
+    border: 2px dashed #002248; /*края при нажатии кнопки цвета*/
+    background-color: #fff;
+    color: #002248; /*текст буквы*/
+}
+
+.btn--red:hover {
+    transition: .4s;
+    border: 2px dashed #002248; /*края при нажатии кнопки цвета*/
+    background-color: #fff;
+    color: #002248; /*текст буквы*/
+}
+
+.card__btn:hover {
+    transition: 1ms;
+    border: none;
+    background-color: #1162b3;
+    color: #fff; /*текст буквы*/
+}
+
+
+/* Intro (часть кроме шапки)======================*/
+.intro {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: rgba(35, 78, 122, 0.219);
+    /* офигенный цвет как надо! - rgb(220, 228, 244) */
+    color: #002248;
+    margin: 0;
+    padding: 50px;
+}
+
+.section__head {
+    font-family: 'Philosopher', sans-serif;
+    font-size: 30px;
+    align-items: center;
+    line-height: 1.1;
+    margin-top: 60px;
+    margin-bottom: 30px;
+}
+
+.section__title {
+    margin: 0; /* Убираем внешние отступы у заголовка */
+    text-align: center; /* Центрирование заголовка по центру .section__head */
+    flex-grow: 1; /* Занимаем все доступное пространство слева от .view-all */
+}
+
+.cards {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.cards__item {
+    margin-bottom: 30px;
+}
+
+/*отступы*/
+.cards__item:not(:last-child) {
+    margin-right: 20px;
+    /* margin-bottom: 30px; */
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    width: 350px;
+    background-color: #fff;
+    /* #e5e2e2 */
+
+    /* 20 - длина карточки */
+    margin: 20px 0;
+    border-radius: 10px;
+
+}
+
+.card__image {
+    height: 250px;
+}
+
+.card__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+    border-radius: 10px;
+}
+
+.person__content {
+    display: flex;
+    align-items:center;
+    margin-top: auto;
+    margin-bottom: 30px;
+    align-self:safe; /* Новое свойство для выравнивания внутри контейнера */
+}
+
+.person__image {
+    display: flex;
+    flex-direction: column;
+    height: 30px;
+    width: 30px;
+}
+
+.person__image img {
+    width: 100%;
+    height: 100%;
+}
+
+.person {
+    display: inline-block;
+    position: relative;
+    font-family: 'Philosopher', sans-serif;
+    font-size: 17px;
+    margin-left: 5px;
+}
+
+.card__content {
+    align-items: center; /*Выравнивание контента по центру*/
+    display: flex;
+    flex-direction: column;
+    /* align-items: flex-start; */
+    padding: 20px;
+    flex-grow: 1;
+}
+
+.card__title {
+    /* margin: 0; */
+    align-items: center;
+    text-align: center;
+    margin-bottom: 15px;
+    font-family: 'Philosopher', sans-serif;
+    font-size: 25px;
+}
+
+.card__descr {
+    margin: 0;
+    margin-bottom: 30px;
+    margin-top: -10px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+}
+
+.card__price {
+    margin-top: auto;
+    font-family: 'Philosopher', sans-serif;
+    font-size: 25px;
+    /* margin-top: 20px;
+    margin-bottom: -20px; */
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.card_fly_content {
+
+    display: flex;
+    align-items:center;
+}
+.card__fly {
+    /* display: inline-block; */
+    /* position: relative; */
+    /* flex-direction: column; */
+    font-family: 'Philosopher', sans-serif;
+    font-size: 15px;
+
+    margin-top: 30px;
+    /* margin-top: auto; */
+    margin-bottom: -30px;
+    /* margin-bottom: 0; */
+}
+
+/* если в карточке текста будет больше, чтоб все были одинаковые */
+.cards__item .card {
+    height: 100%;
+}
+
+.rating-result {
+    width: 310px;
+    margin: 0;
+    text-align: center;
+    /* margin-bottom - отступ снизу */
+    margin-bottom: 15px;
+}
+.rating-result span {
+    padding: 0;
+    font-size: 32px;
+    margin: 0 3px;
+    line-height: 1;
+    /* color: lightgrey;
+    text-shadow: 1px 1px #bbb; */
+}
+.rating-result > span:before {
+    content: '★';
+}
+.rating-result > span.active {
+    color: gold;
+    text-shadow: 1px 1px #c60;
+}
+
+
+
+/*Сортировка кнопка*/
+.sort__head {
+    font-family: 'Philosopher', sans-serif;
+    font-size: 20px;
+    color: #002248c1;
+    display: flex;
+    align-items: center;
+    margin-left: 700px;
+}
+
+.sort__head:hover {
+    color: #002248;
+}
+
+.spin::after {
+    content: "";
+    display: inline-block;
+    background-image: url(../img/spin_icon.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: 50% 50%;
+    width: 15px;
+    height: 15px;
+    color: #002248c1;
+}
+
+.sort__head span {
+    position: absolute;
+    background-color: transparent;
+    top: 10px;
+    left: 0;
+    width: 40px;
+    height: 10px;
+    display: block;
+    transform: rotate(35deg);
+    float: right;
+    border-radius: 2px;
+}
+.arrow-4-left {
+    position: absolute;
+    background-color: transparent;
+    top: 10px;
+    left: 0;
+    width: 40px;
+    height: 10px;
+    display: block;
+    transform: rotate(35deg);
+    float: right;
+    border-radius: 2px;
+}
+
+
+/* Стилизация кнопки, чтобы она выглядела как ссылка */
+button {
+    background: none;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    text-decoration: underline;
+    color: blue;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-menu {
+    background-color: #fff;
+    padding: 20px 20px;
+    box-shadow: 0 5px 10px rgba(0,0,0, .1);
+    border-radius: 7px;
+    width: 200px;
+    /* visibility: hidden;
+    opacity: 0;
+    z-index: -1; */
+}
+
+.dropdown a {
+    display: block;
+    padding: 15px 0;
+    opacity: 0.7;
+    text-decoration: none;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    padding: 20px 20px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, .1);
+    border-radius: 7px;
+    width: 200px;
+    z-index: 99;
+}
+.dropdown-toggle:hover {
+    z-index: 99;
+    visibility: visible;
+    opacity: 1;
+}
+
+.dropdown a:hover {
+    display: block;
+    padding: 10px 0;
+    color: #000;
+
+}
+
+.input {
+    max-width: 190px;
+    background-color: #f5f5f5;
+    color: #242424;
+    padding: .15rem .5rem;
+    min-height: 40px;
+    border-radius: 4px;
+    outline: none;
+    border: none;
+    line-height: 1.15;
+    box-shadow: 0px 10px 20px -18px;
+    right: 700;
+    align-items: center; /*выровнять элементы с картинкой по центру*/
+}
+
+input:focus {
+    border-bottom: 2px solid #5b5fc7;
+    border-radius: 4px 4px 2px 2px;
+}
+
+input:hover {
+    outline: 1px solid lightgrey;
+}
+
+.sort_and_search {
+    display: flex;
+    align-items: center;
+}
+
+
+
+/* корзина */
+.cartBtn {
+    border: none;
+    border-radius: 0px;
+    padding: 14px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    color: white;
+    font-weight: 500;
+    position: relative;
+    background-color: #104d8a;
+    box-shadow: 0 20px 30px -7px rgba(27, 27, 27, 0.219);
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    overflow: hidden;
+    border-radius: 10px;
+    margin-left: 20px;
+}
+
+.cartBtn:hover {
+    transition: 1ms;
+    border: none;
+    background-color: #1162b3;
+    color: #fff; /*текст буквы*/
+    text-decoration: none;
+}
+
+.cart {
+    z-index: 2;
+}
+
+.cartBtn:active {
+    transform: scale(0.96);
+}
+
+.product {
+    position: absolute;
+    width: 12px;
+    border-radius: 3px;
+    content: "";
+    left: 23px;
+    bottom: 23px;
+    opacity: 0;
+    z-index: 1;
+    fill: rgb(211, 211, 211);
+}
